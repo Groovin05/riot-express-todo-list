@@ -5,10 +5,16 @@ node_js:
 services: mongodb  
 cache:  
   directories:
-    - "node_modules"
+  g- "node_modules"
 sudo: false
 install:
   - npm install
 script:
   - npm run lint
   - npm test
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: chmod +x ./deploy.sh && ./deploy.sh
+  on:
+    branch: master
